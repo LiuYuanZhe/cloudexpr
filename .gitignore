@@ -18,6 +18,25 @@
 *.zip
 *.tar.gz
 *.rar
+*.properties
+*.yml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+.idea/
+consumer/target/classes/com/
+consumer/target/generated-sources/
+consumer/target/generated-test-sources/
+consumer/target/test-classes/
+provider/target/classes/com/
+provider/target/generated-sources/
+provider/target/generated-test-sources/
+provider/target/test-classes/
+register/src/main/java/crawler/
+register/src/main/resources/static/
+register/src/main/resources/templates/
+register/target/classes/com/
+register/target/generated-sources/
+register/target/generated-test-sources/
+register/target/test-classes/
+src/
