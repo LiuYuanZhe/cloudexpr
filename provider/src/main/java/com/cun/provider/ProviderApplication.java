@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 //@EnableAspectJAutoProxy
-@EnableCaching
-@ImportResource({"classpath*:spring/application.xml"})
+//@EnableCaching
+//@ImportResource({"classpath*:spring/application.xml"})
 public class ProviderApplication {
 
     public static void main(String[] args) {
