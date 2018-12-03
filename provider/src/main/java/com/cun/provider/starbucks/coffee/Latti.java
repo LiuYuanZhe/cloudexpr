@@ -19,7 +19,7 @@ public class Latti {
     @Test
     public void testLog(){
         logger.debug("debug：....");
-        logger.info(logger.getClass().getName()+":info...");
+        logger.info(logger.getClass().getName()+":info...{}","test placeholder");
         logger.error(logger.getName()+":error...");
     }
 
