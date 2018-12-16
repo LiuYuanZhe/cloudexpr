@@ -1,5 +1,6 @@
 package com.cun.provider.delayqueue;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,5 +20,6 @@ public class DelayQueueTest {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         executorService.execute(new Consumer(delayQueue));
         executorService.shutdown();
+//        CountDownLatch
     }
 }

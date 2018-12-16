@@ -9,7 +9,7 @@ import java.lang.annotation.Annotation;
 /**
  * Created by LiuYuanZhe on 2018/12/6.
  */
-@Component
+//@Component
 public class SpringAnnotation implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
