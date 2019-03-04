@@ -8,5 +8,10 @@ import com.cun.provider.pattern.Factory.Game;
  * Created by LiuYuanZhe on 2018/11/25.
  */
 public interface GameFactory {
-    Game getGame();
+    Game getGame(String gamename);
+
+    public static void main(String[] args) {
+        Game game = new CFFactory().getGame("cf");
+        game.play();
+    }
 }

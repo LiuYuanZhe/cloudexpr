@@ -8,7 +8,6 @@ import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import sun.misc.BASE64Decoder;
 
 import javax.annotation.PostConstruct;
@@ -49,15 +48,21 @@ public class ChaojiyingUtil {
     private String imagePath
             = "/Users/rqw1991/Downloads/javaother/image";
 
-    public static final String IMAG_PATH="/Users/rqw1991/Downloads/javaother/image";
+    public static final String IMAG_PATH = "/Users/rqw1991/Downloads/javaother/image";
 
 
-    private static String innerUserName= "liuyuanzhe";;
-    private static String innerPassword= "liuyuanzhe";;
-    private static String innerSoftId= "896544";;
-    private static String innerProcessingUrl = "http://upload.chaojiying.net/Upload/Processing.php";;
-    private static String innerReporterrorUrl= "http://code.chaojiying.net/Upload/ReportError.php";;
-    private static String innerImagePath= "/Users/rqw1991/Downloads/javaother/image";;
+    private static String innerUserName = "liuyuanzhe";
+    ;
+    private static String innerPassword = "liuyuanzhe";
+    ;
+    private static String innerSoftId = "896544";
+    ;
+    private static String innerProcessingUrl = "http://upload.chaojiying.net/Upload/Processing.php";
+    ;
+    private static String innerReporterrorUrl = "http://code.chaojiying.net/Upload/ReportError.php";
+    ;
+    private static String innerImagePath = "/Users/rqw1991/Downloads/javaother/image";
+    ;
 
     @PostConstruct
     public void postConstruct() {
@@ -66,13 +71,14 @@ public class ChaojiyingUtil {
         innerSoftId = softId;
         innerProcessingUrl = processingUrl;
         innerReporterrorUrl = reporterrorUrl;
-        innerImagePath = imagePath+File.separator+"current";
+        innerImagePath = imagePath + File.separator + "current";
     }
 
     /**
      * 报错返分
-     * @param id		图片ID
-     * @return			response
+     *
+     * @param id 图片ID
+     * @return response
      */
     public static String ReportError(String id) {
         String param = String
@@ -96,12 +102,13 @@ public class ChaojiyingUtil {
 
     /**
      * 识别图片_按图片文件路径
-     * @param codetype	图片类型，必须字段
-     * @param filePath	图片文件路径，必须字段
+     *
+     * @param codetype 图片类型，必须字段
+     * @param filePath 图片文件路径，必须字段
      * @return 错误返回-未知问题
-     *          正确返回-{"err_no":0,"err_str":"OK","pic_id":"105426226809",
-     *                    "pic_str":"qrtn","md5":"57f7002594c52fe8fb66d6aad9f3cda4",
-     *                    "str_debug":"null"}
+     * 正确返回-{"err_no":0,"err_str":"OK","pic_id":"105426226809",
+     * "pic_str":"qrtn","md5":"57f7002594c52fe8fb66d6aad9f3cda4",
+     * "str_debug":"null"}
      */
     public static String PostPic(String codetype, String filePath) {
         return PostPic(codetype, null, null, null, filePath);
@@ -109,15 +116,16 @@ public class ChaojiyingUtil {
 
     /**
      * 识别图片_按图片文件路径
-     * @param codetype	图片类型，必须字段
-     * @param len_min	最小位数
-     * @param time_add	附加时间
-     * @param str_debug	 开发者自定义信息
-     * @param filePath	图片文件路径
+     *
+     * @param codetype  图片类型，必须字段
+     * @param len_min   最小位数
+     * @param time_add  附加时间
+     * @param str_debug 开发者自定义信息
+     * @param filePath  图片文件路径
      * @return 错误返回-未知问题
-     *          正确返回-{"err_no":0,"err_str":"OK","pic_id":"105426226809",
-     *                    "pic_str":"qrtn","md5":"57f7002594c52fe8fb66d6aad9f3cda4",
-     *                    "str_debug":"null"}
+     * 正确返回-{"err_no":0,"err_str":"OK","pic_id":"105426226809",
+     * "pic_str":"qrtn","md5":"57f7002594c52fe8fb66d6aad9f3cda4",
+     * "str_debug":"null"}
      */
     public static String PostPic(String codetype, String len_min, String time_add, String str_debug,
                                  String filePath) {
@@ -135,14 +143,14 @@ public class ChaojiyingUtil {
                 byte[] data = new byte[size];
                 fis = new FileInputStream(f);
                 fis.read(data, 0, size);
-                if(null != fis) fis.close();
+                if (null != fis) fis.close();
                 if (data.length > 0) {
                     try {
                         logger.info("---调用超级鹰图片识别接口，url : {}, imageCode : {}, imagePath : {}, param : {}",
                                 innerProcessingUrl, codetype, filePath, param);
                         result = httpPostImage(innerProcessingUrl, param, data);
                         logger.info("调用超级鹰成功，result={}", result);
-                    } catch(Exception e1) {
+                    } catch (Exception e1) {
                         logger.info("调用超级鹰失败，result : {}", result);
                         logger.error("", e1);
                         result = "未知问题";
@@ -154,14 +162,15 @@ public class ChaojiyingUtil {
                     }
                 }
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             logger.error("", ex);
             result = "未知问题";
         } finally {
             if (fis != null) {
                 try {
                     fis.close();
-                } catch (IOException e) {}
+                } catch (IOException e) {
+                }
             }
         }
         return result;
@@ -176,7 +185,7 @@ public class ChaojiyingUtil {
      * @throws IOException
      */
     private static String httpPostImage(String url, String param,
-                                       byte[] data) throws IOException {
+                                        byte[] data) throws IOException {
         long time = (new Date()).getTime();
         URL u = null;
         HttpURLConnection con = null;
@@ -225,8 +234,8 @@ public class ChaojiyingUtil {
      * @return  加密后字符串
      */
     private final static String MD5(String s) {
-        char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F' };
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             byte[] btInput = s.getBytes();
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
@@ -297,7 +306,7 @@ public class ChaojiyingUtil {
      * @param result
      * @return 成功返回本地图片地址，失败返回-1
      */
-    public static String putChaptaToLocal(String imgUrl,String result, String taskHashcode) {
+    public static String putChaptaToLocal(String imgUrl, String result, String taskHashcode) {
         FileOutputStream fos = null;
         BufferedInputStream bis = null;
         HttpURLConnection httpUrl = null;
@@ -306,13 +315,13 @@ public class ChaojiyingUtil {
         byte[] buf = new byte[BUFFER_SIZE];
         int size = 0;
 
-        String code = StringUtils.substringBefore(taskHashcode,"_");
-        String localImagePath = innerImagePath + File.separator+code;
+        String code = StringUtils.substringBefore(taskHashcode, "_");
+        String localImagePath = innerImagePath + File.separator + code;
         File resourceFilePath = new File(localImagePath);
         if (!resourceFilePath.exists()) {
             resourceFilePath.mkdirs();
         }
-        String imageUrl = localImagePath+File.separator+ taskHashcode + ".jpg";
+        String imageUrl = localImagePath + File.separator + taskHashcode + ".jpg";
         try {
             url = new URL(imgUrl);
             httpUrl = (HttpURLConnection) url.openConnection();
@@ -354,9 +363,10 @@ public class ChaojiyingUtil {
 
     /**
      * 将url指向的图片保存到本地，并返回本地地址（header需指定）
-     * @param imgUrl 图片地址
-     * @param result cookies
-     * @param headers 消息头信息
+     *
+     * @param imgUrl       图片地址
+     * @param result       cookies
+     * @param headers      消息头信息
      * @param taskHashcode 用户手机号
      * @return 成功返回本地图片地址，失败返回-1
      */
@@ -368,13 +378,13 @@ public class ChaojiyingUtil {
         int BUFFER_SIZE = 1024;
         byte[] buf = new byte[BUFFER_SIZE];
         int size = 0;
-        String code = StringUtils.substringBefore(taskHashcode,"_");
-        String localImagePath = innerImagePath + File.separator+code;
+        String code = StringUtils.substringBefore(taskHashcode, "_");
+        String localImagePath = innerImagePath + File.separator + code;
         File resourceFilePath = new File(localImagePath);
         if (!resourceFilePath.exists()) {
             resourceFilePath.mkdirs();
         }
-        String imageUrl = localImagePath+File.separator+ taskHashcode + ".jpg";
+        String imageUrl = localImagePath + File.separator + taskHashcode + ".jpg";
         try {
             url = new URL(imgUrl);
             httpUrl = (HttpURLConnection) url.openConnection();
@@ -413,17 +423,18 @@ public class ChaojiyingUtil {
 
     /**
      * 将url指向的图片保存到本地，并返回本地地址（header需指定）
-     * @param imgUrl 图片地址
-     * @param result cookies
+     *
+     * @param imgUrl  图片地址
+     * @param result  cookies
      * @param headers 消息头信息
      * @return map
-     *          key:imgPath - 图片路径
-     *          key:cookies - Set-Cookie
+     * key:imgPath - 图片路径
+     * key:cookies - Set-Cookie
      */
     public static Map<String, String> putChaptaToLocalReturnCookie(String imgUrl,
                                                                    String result,
                                                                    Map<String, String> headers
-    ,String citycode) {
+            , String citycode) {
         Map<String, String> map = new HashMap() {{
             put("imgPath", "-1");
             put("cookies", "");
@@ -440,7 +451,7 @@ public class ChaojiyingUtil {
         if (!resourceFilePath.exists()) {
             resourceFilePath.mkdirs();
         }
-        String imageUrl = localImagePath+File.separator+"123"+".jpg";
+        String imageUrl = localImagePath + File.separator + "123" + ".jpg";
         try {
             url = new URL(imgUrl);
             httpUrl = (HttpURLConnection) url.openConnection();
@@ -490,19 +501,19 @@ public class ChaojiyingUtil {
      * @param result
      * @return 成功返回本地图片地址，失败返回-1
      */
-    public static String putBase64ChaptaToLocal(String imgUrl,String result, String taskHashcode) {
+    public static String putBase64ChaptaToLocal(String imgUrl, String result, String taskHashcode) {
         BufferedInputStream bis = null;
         HttpURLConnection httpUrl = null;
         URL url = null;
         int BUFFER_SIZE = 1024;
         byte[] buf = new byte[BUFFER_SIZE];
-        String code = StringUtils.substringBefore(taskHashcode,"_");
-        String localImagePath = innerImagePath + File.separator+code;
+        String code = StringUtils.substringBefore(taskHashcode, "_");
+        String localImagePath = innerImagePath + File.separator + code;
         File resourceFilePath = new File(localImagePath);
         if (!resourceFilePath.exists()) {
             resourceFilePath.mkdirs();
         }
-        String imageUrl = localImagePath+File.separator+ taskHashcode + ".jpg";
+        String imageUrl = localImagePath + File.separator + taskHashcode + ".jpg";
         try {
             url = new URL(imgUrl);
             httpUrl = (HttpURLConnection) url.openConnection();
@@ -514,14 +525,14 @@ public class ChaojiyingUtil {
             httpUrl.setRequestProperty("Connection", "Keep-Alive");
             httpUrl.setRequestProperty("Host", "authcode.jd.com");
             httpUrl.setRequestProperty("Referer", "http://service.ah.10086.cn/pub-page/common/loginBox.html");
-			httpUrl.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586");
+            httpUrl.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586");
             httpUrl.connect();
             bis = new BufferedInputStream(httpUrl.getInputStream());
             StringBuffer buffer = new StringBuffer();
             while ((bis.read(buf)) != -1) {
                 buffer.append(buf);
             }
-            replaceBase64Image(buffer.toString(),imageUrl);
+            replaceBase64Image(buffer.toString(), imageUrl);
             return imageUrl;
         } catch (Exception e) {
 //			e.printStackTrace();
@@ -540,7 +551,6 @@ public class ChaojiyingUtil {
     }
 
     /**
-     *
      * @param src
      * @param imagePath
      * @return
@@ -570,36 +580,35 @@ public class ChaojiyingUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (os != null){
-                try {os.close();} catch (IOException e) {}
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException e) {
+                }
             }
         }
     }
 
 
-    public static String generateImageToLocal(String imgStr,String taskHashcode)
-    {   //对字节数组字符串进行Base64解码并生成图片
-        String code = StringUtils.substringBefore(taskHashcode,"_");
-        String localImagePath = innerImagePath + File.separator+code;
+    public static String generateImageToLocal(String imgStr, String taskHashcode) {   //对字节数组字符串进行Base64解码并生成图片
+        String code = StringUtils.substringBefore(taskHashcode, "_");
+        String localImagePath = innerImagePath + File.separator + code;
         //路径不存在，新建路径
         File resourceFilePath = new File(localImagePath);
         if (!resourceFilePath.exists()) {
             resourceFilePath.mkdirs();
         }
-        String imageUrl = localImagePath+File.separator+ taskHashcode + ".jpg";
+        String imageUrl = localImagePath + File.separator + taskHashcode + ".jpg";
         if (imgStr == null) //图像数据为空
             return imageUrl;
         BASE64Decoder decoder = new BASE64Decoder();
-        try
-        {
+        try {
             //Base64解码
             String base64ImgData = StringUtils.substringAfter(imgStr, "base64,");
             byte[] b = decoder.decodeBuffer(base64ImgData);
-            for(int i=0;i<b.length;++i)
-            {
-                if(b[i]<0)
-                {//调整异常数据
-                    b[i]+=256;
+            for (int i = 0; i < b.length; ++i) {
+                if (b[i] < 0) {//调整异常数据
+                    b[i] += 256;
                 }
             }
             //生成jpeg图片
@@ -608,35 +617,34 @@ public class ChaojiyingUtil {
             out.flush();
             out.close();
             return imageUrl;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return imageUrl;
         }
     }
 
     /**
      * 根据对页面的验证码进行解析，返回验证码路径(截图方式)
+     *
      * @param driver
-     * @param ele 验证码元素
+     * @param ele          验证码元素
      * @param taskHashcode
      * @return
      */
     public static String saveChaptaToLocal(WebDriver driver, WebElement ele, String taskHashcode) {
-        String code = StringUtils.substringBefore(taskHashcode,"_");
-        String localImagePath = innerImagePath + File.separator+code;
+        String code = StringUtils.substringBefore(taskHashcode, "_");
+        String localImagePath = innerImagePath + File.separator + code;
         File resourceFilePath = new File(localImagePath);
         if (!resourceFilePath.exists()) {
             resourceFilePath.mkdirs();
         }
-        String imageUrl = localImagePath+File.separator+ taskHashcode + ".png";
+        String imageUrl = localImagePath + File.separator + taskHashcode + ".png";
         try {
-            File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             BufferedImage fullImg = ImageIO.read(screenshot);
             Point point = ele.getLocation();
             int eleWidth = ele.getSize().getWidth();
             int eleHeight = ele.getSize().getHeight();
-            BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(),
+            BufferedImage eleScreenshot = fullImg.getSubimage(point.getX(), point.getY(),
                     eleWidth, eleHeight);
             ImageIO.write(eleScreenshot, "png", screenshot);
             File screenshotLocation = new File(imageUrl);

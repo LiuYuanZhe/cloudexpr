@@ -22,4 +22,12 @@ public class DemoController {
         id = 2;
         return "Thanks";
     }
+
+    public static void main(String[] args) {
+        int i = 0;
+        if((i=4)==3){
+
+        }
+        System.out.println(i);
+    }
 }

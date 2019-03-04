@@ -8,7 +8,7 @@ import com.cun.provider.pattern.Factory.Game;
  */
 public class CFFactory implements GameFactory {
     @Override
-    public Game getGame() {
+    public Game getGame(String gamename) {
         return new CF();
     }
 }
